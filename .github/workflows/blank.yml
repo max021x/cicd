@@ -1,13 +1,28 @@
-name: mohammadi mahdi mohammadi 01131147907026
+name: Fetch JSON and Push mahdi mohammdi
 
 on:
   push:
     branches:
-      - main  # Adjust this to the branch you want to trigger on
+      - main  # Adjust to the branch you want to trigger this on
 
 jobs:
-  call-api:
+  fetch-and-update:
     runs-on: ubuntu-latest
     steps:
-      - name: Send HTTP request
-        run: curl -X POST https://shams.sython.ir/test.php/?name=MohammadMahdiMohmmadi&cod=01131147907026
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      
+      - name: Fetch JSON data
+        run: curl -s https://shams.sython.ir/test.php/?name=MohammdMahdiMohammadi01131147907026 -o data.json
+      
+      - name: Commit changes
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
+          git add data.json
+          git commit -m "Update data.json from API" || echo "No changes to commit"
+      
+      - name: Push changes
+        run: git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
