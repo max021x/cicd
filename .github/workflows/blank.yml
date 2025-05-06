@@ -10,4 +10,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Send HTTP request
-        run: curl -X POST https://shams.sython.ir/test.php
+        run: curl -X POST https://shams.sython.ir/test.php/?name=MohammadMahdiMohmmadi&cod=01131147907026
