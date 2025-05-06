@@ -1,0 +1,13 @@
+name: Push Trigger
+
+on:
+  push:
+    branches:
+      - main  # Adjust this to the branch you want to trigger on
+
+jobs:
+  call-api:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send HTTP request
+        run: curl -X POST https://shams.sython.ir/test.php
